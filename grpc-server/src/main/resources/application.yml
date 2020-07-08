@@ -1,0 +1,10 @@
+#grpc:
+#  client:
+#    enabled: true
+#    serverNode:
+#      - name: "grpcClient"
+#        host: "127.0.0.1"
+#        port: 19433
+#  server:
+#    enabled: true
+#    port: 19433

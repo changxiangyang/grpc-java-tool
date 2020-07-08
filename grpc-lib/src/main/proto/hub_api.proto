@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "base.proto";
+import "resource.proto";
+
+package oexp.service.hub_api;
+option go_package = "oexp.org/lib/oexp-proto/service/hub_api";
+option java_package = "oexp.service.hub_api";
+
+// 按照位置倒序获取列表
+message GetHubByLocReq {
+
+    oexp.common.base.Location location = 1;
+
+    // Can be 0, using default values(50000m)
+    int64 limit_max_dist = 2;
+
+    oexp.common.base.Trace trace = 99;
+}
+
+message HubCandidate {
+
+    oexp.common.entity.resource.Hub hub = 1;
+
+    int64 dist = 2; // unit(m)
+}
+
+message GetHubByLocRsp {
+    oexp.common.base.Error error = 1;
+
+    repeated HubCandidate hub_list = 2;
+}
+
+service HubApi {
+
+    // 按照位置倒序获取列表
+    rpc GetHubByLoc (GetHubByLocReq) returns (GetHubByLocRsp) {};
+}

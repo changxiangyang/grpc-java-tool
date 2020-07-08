@@ -1,0 +1,64 @@
+syntax = "proto3";
+package oexp.common.base;
+option go_package = "oexp.org/lib/oexp-proto/common/base";
+option java_package = "oexp.common.base";
+
+// Trace
+message Trace {
+    string trace_id = 1;
+    string caller = 2;
+}
+
+// Error model
+message Error {
+    // response code
+    int64 code = 1;
+    // response message
+    string message = 2;
+}
+
+// location point
+message Location {
+    // point longitude
+    double lng = 1;
+    // point latitude
+    double lat = 2;
+    // timestamp
+    int64 ts = 3;
+
+    int64 uid = 4;
+}
+
+
+enum SortByType {
+    asc = 0;
+    desc = 1;
+}
+
+// query option
+message QueryOption {
+
+    int64 limit = 1;
+    int64 offset = 2;
+    string sort_by_field = 3;
+    SortByType sort_by_type = 4;
+    bool count_only = 5;
+    bool skip_count = 6;
+}
+
+message Pagination {
+    int64 page = 1;
+    int64 page_size = 2;
+    string sort_by_field = 3;
+    SortByType sort_by_type = 4;
+    int64 total_size = 5;
+
+    int64 total_page = 99;
+}
+
+
+message Range {
+    double start = 1;
+    double end = 2;
+}
+
